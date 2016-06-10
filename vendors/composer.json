@@ -1,0 +1,25 @@
+{
+	"name": "URV",
+	"description": "Учет рабочего времени",
+    "authors": [
+        {
+            "name": "Nikolay Sidorovich",
+            "email": "sidorovich21101986@mail.ru",
+            "role": "Developer"
+        }
+	],
+	"require": {
+		"php": ">=5.3.3"
+		
+	},
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+		"phpunit/dbunit": ">=1.2",
+		"phpunit/phpunit-selenium": ">=1.3",
+		"phpunit/phpunit-story": "1.0.2",
+		"se/selenium-server-standalone": "2.*",
+		"yiisoft/yii": ">=1.1.14",
+		"phpoffice/phpexcel": ">=1.8.0",
+		"phpoffice/phpword": "v0.12.*"
+    }
+}

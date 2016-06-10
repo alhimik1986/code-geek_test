@@ -1,0 +1,29 @@
+$.fn.fixedTableHeader = function () {
+    var t = $(this);
+	$.fn.fixedTableHeader.t = t;
+
+    var tableOffset = t.offset().top;
+    var fixed_table = $('<table></table>').css({ 'display':'none', 'position':'fixed', 'top':'0px', 'background-color':'white' });
+    t.parent().append(fixed_table.append(t.find("thead").clone()));
+
+    fixed_table.find("th").each(function (i) {
+		th = t.find("th").eq(i);
+		$(this).width(th.width());
+    });
+	width = t.css('width');
+	width.substr(0, -2);
+	width = parseInt(width) + 1 + 'px';
+	fixed_table.attr('class', t.attr('class')).css('width', width);
+
+
+    $(window).bind("scroll", function () {
+        var offset = $(this).scrollTop();
+        if (offset >= $.fn.fixedTableHeader.t.offset().top && fixed_table.is(":hidden")) {
+            fixed_table.show();
+        }
+        else if (offset < $.fn.fixedTableHeader.t.offset().top) {
+            fixed_table.hide();
+        }
+    });
+    return t;
+}

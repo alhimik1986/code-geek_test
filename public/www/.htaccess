@@ -1,0 +1,14 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+
+#if a directory or a file exists,
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#otherwise forward it to index.php
+RewriteRule . index.php
+
+
+
+php_value max_input_vars 10000

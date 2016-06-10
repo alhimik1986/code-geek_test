@@ -1,0 +1,57 @@
+$.fn.fixedTableHeader = function () {
+	var t = $(this),
+		header = t.find('thead'),
+		fixed_table = $('<table></table>').css({ 'display':'none', 'position':'fixed', 'top':'0px', 'background-color':'white' }),
+		win = $(window),
+		hdrCells = header.children('tr:not(.sticky-false)').children(),
+		fixed_table_cells = fixed_table.children('tr:not(.sticky-false)').children('th'),
+		tableOffset = t.offset().top,
+		spacing = (!/(webkit|msie)/i.test(navigator.userAgent))
+			? parseInt(t.css('border-left-width'))
+			: 0,
+		lastWidth = 0,
+		build = function(){
+			t.parent().append(fixed_table.append(t.find("thead").clone()));
+			fixed_table.find('tr:not(.sticky-false)').children('th').each(function(i){
+				// clicking on sticky will trigger sort
+				hdrCells.eq(i).trigger('click');
+				fixed_table.find('tr:not(.sticky-false)').children().eq(i).bind('click', function(e){
+					hdrCells.eq(i).trigger('click');
+				});
+			});
+		},
+		resize = function(){
+			fixed_table.find("th").each(function (i) {
+				th = t.find("th").eq(i);
+				$(this).width(th.width() - spacing);
+			});
+			width = t.width() + 1 + 'px';
+			fixed_table.attr('class', t.attr('class')).css('width', width);
+			lastWidth = t.width();
+		},
+		processing = false;
+
+    $(window).bind("scroll", function () {
+		// Показываем-скрываем нашу прилипающую шапку
+        var offset = $(this).scrollTop();
+        if (offset >= t.offset().top && fixed_table.is(":hidden")) fixed_table.show();
+        else if (offset < t.offset().top) fixed_table.hide();
+
+		if (!processing) {
+			processing = true;
+			setTimeout(function(){
+				fixed_table.css({
+					left : header.offset().left - $(window).scrollLeft() - spacing + 'px',
+				});
+				if ((header.width() != lastWidth)) resize();
+				processing = false;
+			}, 100);
+		}
+    });
+
+
+	
+	build();
+	resize();
+    return t;
+}

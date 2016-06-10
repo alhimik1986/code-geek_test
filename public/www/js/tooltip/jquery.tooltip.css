@@ -1,0 +1,13 @@
+#tooltip{
+	position: absolute;
+	display: none;
+	border: 1px solid #cccccc;
+	background: #ededed;
+	padding: 5px 20px;
+	color: #5d6365;
+	
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+#tooltip h3 {font-size:13px; color:#666;}

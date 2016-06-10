@@ -1,0 +1,1 @@
+git daemon --verbose --export-all --base-path="C:/WebServers/ok"

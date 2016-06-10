@@ -1,0 +1,20 @@
+<phpunit bootstrap="bootstrap.php"
+		colors="false"
+		convertErrorsToExceptions="true"
+		convertNoticesToExceptions="true"
+		convertWarningsToExceptions="true"
+		stopOnFailure="false">
+
+	<selenium>
+		<!-- В результате отказов от поддержки windows xp из всех браузеров рабочим остался только Internet Explorer -->
+		<browser name="Internet Explorer" browser="*iexplore" />
+		<!--<browser name="GoogleCrome" browser="*googlechrome" />-->
+		<!--<browser name="Firefox" browser="*firefox" />-->
+		
+		<!-- Opera - самый капризный и долгий в тестировании браузер, поэтому его исключаю из списка -->
+		<!--browser name="Opera" browser="*opera" /-->
+		
+		<!--browser name="Firefox" browser="*firefox" host="Nikolay" port="4444" /-->
+	</selenium>
+
+</phpunit>
